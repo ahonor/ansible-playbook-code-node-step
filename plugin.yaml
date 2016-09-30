@@ -1,0 +1,28 @@
+name: ansible-playbook-code-node-step
+rundeckPluginVersion: 1.1
+author: (C) Alex Honor
+date: 06/02/2016
+version: 1.0
+providers:
+    - name: ansible-playbook-code-node-step
+      service: WorkflowNodeStep
+      title: ansible-playbook-code-node-step
+      description: Execute the playbook code on the node
+      plugin-type: script
+      script-interpreter: /bin/bash
+      script-file: ansible-playbook-wrapper
+      script-args: ${config.hostname} 
+      config:
+        - name: hostname
+          title: hostname
+          type: String
+          required: true
+          default: '${node.hostname}'
+        - name: playbook-code
+          title: playbook-code
+          description: the ansible-playbook code to run
+          type: String
+          required: true
+          renderingOptions:
+            displayType: CODE
+            codeSyntaxMode: yaml
